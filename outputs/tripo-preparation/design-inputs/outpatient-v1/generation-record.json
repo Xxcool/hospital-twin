@@ -1,0 +1,33 @@
+{
+  "status": "awaiting_visual_confirmation_not_submitted",
+  "tool": "image_gen built-in",
+  "model_identifier": "not exposed",
+  "date": "2026-10-23",
+  "inputs": [
+    "../../references/entrance-real-photo.png",
+    "../../../design-proposals/day-night-v2/01-日间总览.png"
+  ],
+  "outputs": [
+    {
+      "file": "01-front.png",
+      "role": "preferred single-image generation candidate",
+      "prompt_summary": "单独提取实景低层弧形入口，保持两层、浅色大挑檐、蓝绿玻璃；效果图仅控制精细材质；中性日光白底无环境无UI。"
+    },
+    {
+      "file": "02-side.png",
+      "role": "side design reference",
+      "prompt_summary": "以主图为唯一对象参考，右侧约60度斜视，保持体量、两层、屋顶和材质。"
+    },
+    {
+      "file": "03-back-schematic.png",
+      "role": "unverified inferred rear; not real elevation",
+      "prompt_summary": "主图建筑背面斜视，凸弧后立面，克制规则玻璃分格与中央连接门，未知结构示意。"
+    }
+  ],
+  "review": {
+    "silhouette": "宽低弧形入口，双层立面和挑檐保持；以实景照片最终校核",
+    "multi_view_precision": "窗格和设备位置存在生成偏差，不作为精确一致多视图输入",
+    "rear": "推演示意，未核实",
+    "tripo": "未接入、未提交；确认后先以主图做单图试样"
+  }
+}

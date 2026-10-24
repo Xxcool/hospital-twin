@@ -1,0 +1,103 @@
+{
+  "version": "approved-representative",
+  "model": "tongji-current.glb",
+  "units": "metres, photographic estimate",
+  "axes": "Blender X east Y north Z up; glTF X east Y up Z south",
+  "anchors": {
+    "outpatient": [
+      0,
+      18,
+      26
+    ],
+    "emergency": [
+      96,
+      9,
+      20
+    ],
+    "children": [
+      -76,
+      50,
+      -1
+    ],
+    "inpatient": [
+      78,
+      50,
+      -6
+    ],
+    "medtech": [
+      0,
+      26,
+      -57
+    ],
+    "parking": [
+      -132,
+      30,
+      -25
+    ]
+  },
+  "camera": {
+    "position": [
+      62,
+      225,
+      330
+    ],
+    "target": [
+      0,
+      12,
+      -8
+    ],
+    "orthoHeight": 230
+  },
+  "objects": [
+    "environment",
+    "outpatient",
+    "emergency",
+    "children",
+    "inpatient",
+    "medtech",
+    "parking"
+  ],
+  "trianglesBeforeExport": 180308,
+  "meshCount": 112,
+  "scope": "入口大厅与前场重点；其他楼栋为上下文轮廓，内部资源为示意",
+  "floors": {
+    "root": "floor_exploration",
+    "ids": [
+      "f1",
+      "f2"
+    ],
+    "groups": {
+      "f1": "floor_f1",
+      "f2": "floor_f2",
+      "roof": "floor_roof"
+    },
+    "explode": {
+      "f1": 0,
+      "f2": 13,
+      "roof": 27
+    },
+    "notice": "1F/2F为门诊入口功能示意，非实测平面",
+    "back": {
+      "f1": 0,
+      "f2": 0,
+      "roof": 10
+    }
+  },
+  "tour": [
+    "outpatient",
+    "children",
+    "medtech",
+    "inpatient",
+    "emergency",
+    "parking"
+  ],
+  "surfaceDetail": "门诊幕墙压条、门洞雨篷及五金、檐下格栅、微倒角、1024接触AO；比例估计",
+  "entranceArcDepth": -16,
+  "roadFacadeClearance": 16.72,
+  "entranceCurveDefinition": "Blender平面：前幕墙y=-27-16*(x/60)^2；中央相对两端后退16，朝向以入口近景照片为准",
+  "ambientLife": {
+    "cars": 13,
+    "pedestrians": 36,
+    "mode": "static-schematic"
+  }
+}

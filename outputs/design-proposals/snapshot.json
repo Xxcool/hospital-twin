@@ -1,0 +1,44 @@
+{
+  "purpose": "整屏候选设计共用的模拟示例快照，尚非运行中的仿真输出",
+  "simulationTime": "10:00",
+  "selectedRegion": "综合门诊",
+  "overview": {
+    "cumulativeEncounters": 1286,
+    "waitingPeople": 172,
+    "openServicePoints": 48
+  },
+  "outpatient": {
+    "waitingPeople": 148,
+    "waitMedianMinutes": 26,
+    "waitWindow": "近30分钟已开始接诊者",
+    "openServicePoints": 42,
+    "configuredServicePoints": 56
+  },
+  "emergency": {
+    "waitingPeople": 24,
+    "observationOccupied": 18,
+    "observationCapacity": 24,
+    "openServicePoints": 6,
+    "configuredServicePoints": 8
+  },
+  "notice": "模拟数据 · 不代表医院真实运行情况",
+  "interiorNotice": "内部空间为示意设计",
+  "arrivalTrend": {
+    "metric": "前1小时到诊人次",
+    "times": [
+      "08:00",
+      "09:00",
+      "10:00"
+    ],
+    "outpatient": [
+      85,
+      120,
+      160
+    ],
+    "emergency": [
+      18,
+      22,
+      28
+    ]
+  }
+}
