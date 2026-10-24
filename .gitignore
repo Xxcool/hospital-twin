@@ -1,0 +1,11 @@
+# 本地依赖、构建结果和临时制作历史
+node_modules/
+dist/
+work/
+.DS_Store
+*.log
+*.blend1
+*.blend2
+.env
+.env.*
+!.env.example

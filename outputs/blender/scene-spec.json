@@ -1,0 +1,22 @@
+{
+  "design": "../design-proposals/day-night-v2",
+  "reference": [
+    "../design-proposals/references/用户提供-院区航拍.jpg",
+    "../design-proposals/references/用户提供-入口正面.png",
+    "../design-proposals/references/用户确认-门诊弧形近景.png"
+  ],
+  "dimensions": "照片比例估计，非测绘",
+  "mainHall": {
+    "width": 126,
+    "height": 15,
+    "frontCenterY": -27,
+    "frontEdgeY": -43,
+    "frontCurve": "y=-27-16*(x/60)^2；中央向后、两端向前，以用户确认的近景照片为准；尺寸为比例估计"
+  },
+  "sideClinicalHeight": 46,
+  "scene": "Tongji_Current",
+  "blend": "tongji-current.blend",
+  "manifest": "../runtime/public/scene/manifest.json",
+  "floorNotice": "1F/2F为门诊入口功能示意，非实测平面",
+  "status": "已确认设计的代表区域制作源，网页对照验证中"
+}

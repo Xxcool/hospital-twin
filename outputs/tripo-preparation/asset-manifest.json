@@ -1,0 +1,453 @@
+{
+  "source": "../blender/tongji-current.blend",
+  "source_sha256": "dcecdb2058a4799f8c2215539eba12eaad7c9dc9c0346a45b55bf3b27cde13ec",
+  "status": "preparation_only_not_submitted",
+  "units": "metres, photographic estimate",
+  "axes": "Blender X east Y north Z up; GLB X east Y up Z south",
+  "placement": "world coordinates preserved; do not recenter these assembly references",
+  "assets": [
+    {
+      "id": "outpatient",
+      "meshes": [
+        "EntranceCraft_black",
+        "EntranceCraft_glow",
+        "EntranceCraft_ivory",
+        "EntranceCraft_roof",
+        "EntranceCraft_stone",
+        "EntranceSign",
+        "outpatient_black",
+        "outpatient_black_detail",
+        "outpatient_glass",
+        "outpatient_glass_detail",
+        "outpatient_glassLight",
+        "outpatient_glassLight_detail",
+        "outpatient_glow",
+        "outpatient_glow_detail",
+        "outpatient_ivory",
+        "outpatient_ivory_detail",
+        "outpatient_roof",
+        "outpatient_roof_detail",
+        "outpatient_stone",
+        "outpatient_warmGlass"
+      ],
+      "bounds_blender": {
+        "min": [
+          -63.32487106323242,
+          -54.47042465209961,
+          0.0
+        ],
+        "max": [
+          63.32487106323242,
+          -0.7505919933319092,
+          15.399999618530273
+        ]
+      },
+      "size": [
+        126.64974212646484,
+        53.7198326587677,
+        15.399999618530273
+      ],
+      "glb": "parts/outpatient/outpatient.glb",
+      "blend": "parts/outpatient/outpatient.blend",
+      "views": [
+        "parts/outpatient/front-three-quarter.png",
+        "parts/outpatient/front.png",
+        "parts/outpatient/back.png",
+        "parts/outpatient/top.png"
+      ],
+      "name_zh": "综合门诊入口外壳"
+    },
+    {
+      "id": "emergency",
+      "meshes": [
+        "emergency_glass",
+        "emergency_glow",
+        "emergency_ivory",
+        "emergency_roof",
+        "emergency_warmGlass"
+      ],
+      "bounds_blender": {
+        "min": [
+          79.5,
+          -29.350000381469727,
+          0.0
+        ],
+        "max": [
+          102.5,
+          -11.5,
+          7.0
+        ]
+      },
+      "size": [
+        23.0,
+        17.850000381469727,
+        7.0
+      ],
+      "glb": "parts/emergency/emergency.glb",
+      "blend": "parts/emergency/emergency.blend",
+      "views": [
+        "parts/emergency/front-three-quarter.png"
+      ],
+      "name_zh": "急诊单体"
+    },
+    {
+      "id": "children",
+      "meshes": [
+        "children_black",
+        "children_glass",
+        "children_glassLight",
+        "children_ivory",
+        "children_ivory_detail",
+        "children_roof",
+        "CurrentRefine_children_glassLight",
+        "CurrentRefine_children_ivory",
+        "CurrentRefine_children_roof",
+        "CurrentRefine_children_warmGlass"
+      ],
+      "bounds_blender": {
+        "min": [
+          -101.5,
+          -13.0,
+          0.0
+        ],
+        "max": [
+          -49.5,
+          66.5,
+          51.0
+        ]
+      },
+      "size": [
+        52.0,
+        79.5,
+        51.0
+      ],
+      "glb": "parts/children/children.glb",
+      "blend": "parts/children/children.blend",
+      "views": [
+        "parts/children/front-three-quarter.png"
+      ],
+      "name_zh": "儿童医院楼群"
+    },
+    {
+      "id": "inpatient",
+      "meshes": [
+        "CurrentRefine_inpatient_glassLight",
+        "CurrentRefine_inpatient_ivory",
+        "CurrentRefine_inpatient_roof",
+        "CurrentRefine_inpatient_warmGlass",
+        "inpatient_black",
+        "inpatient_glass",
+        "inpatient_glassLight",
+        "inpatient_ivory",
+        "inpatient_ivory_detail",
+        "inpatient_roof"
+      ],
+      "bounds_blender": {
+        "min": [
+          49.5,
+          -13.0,
+          0.0
+        ],
+        "max": [
+          106.0,
+          104.5,
+          51.0
+        ]
+      },
+      "size": [
+        56.5,
+        117.5,
+        51.0
+      ],
+      "glb": "parts/inpatient/inpatient.glb",
+      "blend": "parts/inpatient/inpatient.blend",
+      "views": [
+        "parts/inpatient/front-three-quarter.png"
+      ],
+      "name_zh": "住院楼群"
+    },
+    {
+      "id": "medtech",
+      "meshes": [
+        "medtech_black",
+        "medtech_glass",
+        "medtech_glassLight",
+        "medtech_ivory",
+        "medtech_roof",
+        "medtech_warmGlass"
+      ],
+      "bounds_blender": {
+        "min": [
+          -34.0,
+          -14.0,
+          0.0
+        ],
+        "max": [
+          34.0,
+          92.0,
+          26.200000762939453
+        ]
+      },
+      "size": [
+        68.0,
+        106.0,
+        26.200000762939453
+      ],
+      "glb": "parts/medtech/medtech.glb",
+      "blend": "parts/medtech/medtech.blend",
+      "views": [
+        "parts/medtech/front-three-quarter.png"
+      ],
+      "name_zh": "医技主体"
+    },
+    {
+      "id": "parking",
+      "meshes": [
+        "parking_glass",
+        "parking_ivory",
+        "parking_line",
+        "parking_roof"
+      ],
+      "bounds_blender": {
+        "min": [
+          -154.5,
+          -12.5,
+          0.0
+        ],
+        "max": [
+          -109.5,
+          60.5,
+          26.795000076293945
+        ]
+      },
+      "size": [
+        45.0,
+        73.0,
+        26.795000076293945
+      ],
+      "glb": "parts/parking/parking.glb",
+      "blend": "parts/parking/parking.blend",
+      "views": [
+        "parts/parking/front-three-quarter.png"
+      ],
+      "name_zh": "停车楼"
+    },
+    {
+      "id": "environment",
+      "meshes": [
+        "CampusLife",
+        "CurrentRefine_environment_leaf",
+        "CurrentRefine_environment_leafLight",
+        "CurrentRefine_environment_stone",
+        "CurrentRefine_environment_wood",
+        "EntranceContinuousPaving",
+        "environment_black",
+        "environment_glass",
+        "environment_glassLight",
+        "environment_glow",
+        "environment_grass",
+        "environment_grassLight",
+        "environment_ivory",
+        "environment_leaf",
+        "environment_leafLight",
+        "environment_leafLight_detail",
+        "environment_line",
+        "environment_pavement",
+        "environment_pavement_detail",
+        "environment_road",
+        "environment_roof",
+        "environment_stone",
+        "environment_wood"
+      ],
+      "bounds_blender": {
+        "min": [
+          -173.0,
+          -193.8206329345703,
+          -1.5
+        ],
+        "max": [
+          173.0,
+          146.0,
+          13.050000190734863
+        ]
+      },
+      "size": [
+        346.0,
+        339.8206329345703,
+        14.550000190734863
+      ],
+      "glb": "parts/environment/environment.glb",
+      "blend": "parts/environment/environment.blend",
+      "views": [],
+      "name_zh": "场地景观装配参考"
+    },
+    {
+      "id": "floor_f1",
+      "meshes": [
+        "floor_f1_black",
+        "floor_f1_floorEdge",
+        "floor_f1_floorSeat",
+        "floor_f1_floorStone",
+        "floor_f1_floorWall",
+        "floor_f1_glassLight",
+        "floor_f1_ivory",
+        "FloorDetail_f1_floorSeat",
+        "FloorDetail_f1_floorWall",
+        "FloorDetail_f1_glass",
+        "FloorDetail_f1_glassLight",
+        "FloorDetail_f1_ivory",
+        "FloorDetail_f1_leafLight",
+        "FloorDetail_f1_stone"
+      ],
+      "bounds_blender": {
+        "min": [
+          -60.25,
+          -43.21294403076172,
+          0.3499999940395355
+        ],
+        "max": [
+          60.25,
+          -3.0,
+          4.050000190734863
+        ]
+      },
+      "size": [
+        120.5,
+        40.21294403076172,
+        3.7000001966953278
+      ],
+      "glb": "parts/floor_f1/floor_f1.glb",
+      "blend": "parts/floor_f1/floor_f1.blend",
+      "views": [],
+      "name_zh": "1F示意内部"
+    },
+    {
+      "id": "floor_f2",
+      "meshes": [
+        "floor_f2_black",
+        "floor_f2_floorEdge",
+        "floor_f2_floorSeat",
+        "floor_f2_floorStone",
+        "floor_f2_floorWall",
+        "floor_f2_glassLight",
+        "floor_f2_ivory",
+        "FloorDetail_f2_floorSeat",
+        "FloorDetail_f2_floorWall",
+        "FloorDetail_f2_glass",
+        "FloorDetail_f2_glassLight",
+        "FloorDetail_f2_ivory",
+        "FloorDetail_f2_leafLight",
+        "FloorDetail_f2_stone"
+      ],
+      "bounds_blender": {
+        "min": [
+          -60.25,
+          -43.21294403076172,
+          7.199999809265137
+        ],
+        "max": [
+          60.25,
+          -3.0,
+          10.899999618530273
+        ]
+      },
+      "size": [
+        120.5,
+        40.21294403076172,
+        3.6999998092651367
+      ],
+      "glb": "parts/floor_f2/floor_f2.glb",
+      "blend": "parts/floor_f2/floor_f2.blend",
+      "views": [],
+      "name_zh": "2F示意内部"
+    },
+    {
+      "id": "floor_roof",
+      "meshes": [
+        "floor_roof_glassLight",
+        "floor_roof_roof"
+      ],
+      "bounds_blender": {
+        "min": [
+          -63.0,
+          -49.63999938964844,
+          14.399999618530273
+        ],
+        "max": [
+          63.0,
+          -1.0,
+          15.039999961853027
+        ]
+      },
+      "size": [
+        126.0,
+        48.63999938964844,
+        0.6400003433227539
+      ],
+      "glb": "parts/floor_roof/floor_roof.glb",
+      "blend": "parts/floor_roof/floor_roof.blend",
+      "views": [],
+      "name_zh": "楼层展开屋顶"
+    },
+    {
+      "id": "clinical_links",
+      "meshes": [
+        "ClinicalLink_glass",
+        "ClinicalLink_ivory",
+        "ClinicalLink_roof",
+        "ClinicalLink_stone"
+      ],
+      "bounds_blender": {
+        "min": [
+          -54.5,
+          -18.5,
+          0.0
+        ],
+        "max": [
+          54.5,
+          63.0,
+          14.5
+        ]
+      },
+      "size": [
+        109.0,
+        81.5,
+        14.5
+      ],
+      "glb": "parts/clinical_links/clinical_links.glb",
+      "blend": "parts/clinical_links/clinical_links.blend",
+      "views": [],
+      "name_zh": "中央连接裙房与连廊"
+    },
+    {
+      "id": "zone_bindings",
+      "meshes": [
+        "zone_f1_waiting",
+        "zone_f1_consultation",
+        "zone_f2_waiting",
+        "zone_f2_consultation"
+      ],
+      "bounds_blender": {
+        "min": [
+          -51.0,
+          -35.560001373291016,
+          0.8399999737739563
+        ],
+        "max": [
+          51.0,
+          -5.639999866485596,
+          7.690000057220459
+        ]
+      },
+      "size": [
+        102.0,
+        29.92000150680542,
+        6.850000083446503
+      ],
+      "glb": "parts/zone_bindings/zone_bindings.glb",
+      "blend": "parts/zone_bindings/zone_bindings.blend",
+      "views": [],
+      "name_zh": "候诊与接诊交互定位面"
+    }
+  ]
+}

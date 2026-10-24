@@ -1,0 +1,196 @@
+[
+  {
+    "asset_id": "outpatient",
+    "name": "综合门诊入口外壳",
+    "status": "awaiting_visual_confirmation",
+    "priority": 1,
+    "input_views": [
+      "parts/outpatient/front-three-quarter.png",
+      "parts/outpatient/front.png",
+      "parts/outpatient/back.png",
+      "parts/outpatient/top.png"
+    ],
+    "prompt": "制作独立可用于实时三维的建筑外观资产。中性日光、真实但克制的浅灰石材与蓝绿色玻璃，细部清晰。仅主体、无背景、无地形、无道路、无树木、无人车、无文字标牌、无UI。不要将窗光、阴影、强高光烘成日夜不可切换的颜色。结构参考约束轮廓，实景参考约束细部；背面未知部分仅作示意。宽而低的连续弧形入口，浅色大挑檐，蓝绿色玻璃幕墙，细密竖向柱和窗框，三组入口。严格按俯视图保持曲线，不镜像，不改成圆筒或半圆塔楼。",
+    "generation_gate": "先确认精细主图；不将当前三张细节不完全一致的参考直接作为精确多视图提交。",
+    "task_id": null,
+    "model_version": null,
+    "license": null,
+    "output": null,
+    "acceptance": [
+      "轮廓和方向与俯视/实景一致",
+      "屋顶和玻璃材质可分离",
+      "无封堵庭院和连廊接口",
+      "背面与薄檐无严重破面",
+      "UV和纹理完整；不将文字/UI生成为几何",
+      "导入Blender校准尺寸和位置后，再进行网页视觉与交互验证"
+    ],
+    "design_reference": "design-inputs/outpatient-v1/01-front.png"
+  },
+  {
+    "asset_id": "emergency",
+    "name": "急诊单体",
+    "status": "draft_not_submitted",
+    "priority": 2,
+    "input_views": [
+      "parts/emergency/front-three-quarter.png"
+    ],
+    "prompt": "制作独立可用于实时三维的建筑外观资产。中性日光、真实但克制的浅灰石材与蓝绿色玻璃，细部清晰。仅主体、无背景、无地形、无道路、无树木、无人车、无文字标牌、无UI。不要将窗光、阴影、强高光烘成日夜不可切换的颜色。结构参考约束轮廓，实景参考约束细部；背面未知部分仅作示意。低层独立急诊体量，平屋顶、浅色石材边框、蓝绿色玻璃、入口雨篷，入口与门诊侧的连接位置保留。",
+    "generation_gate": "接入后核实支持的输入方式、模型版本与额度；先单件试制。",
+    "task_id": null,
+    "model_version": null,
+    "license": null,
+    "output": null,
+    "acceptance": [
+      "轮廓和方向与俯视/实景一致",
+      "屋顶和玻璃材质可分离",
+      "无封堵庭院和连廊接口",
+      "背面与薄檐无严重破面",
+      "UV和纹理完整；不将文字/UI生成为几何",
+      "导入Blender校准尺寸和位置后，再进行网页视觉与交互验证"
+    ]
+  },
+  {
+    "asset_id": "children",
+    "name": "儿童医院楼群",
+    "status": "draft_not_submitted",
+    "priority": 2,
+    "input_views": [
+      "parts/children/front-three-quarter.png"
+    ],
+    "prompt": "制作独立可用于实时三维的建筑外观资产。中性日光、真实但克制的浅灰石材与蓝绿色玻璃，细部清晰。仅主体、无背景、无地形、无道路、无树木、无人车、无文字标牌、无UI。不要将窗光、阴影、强高光烘成日夜不可切换的颜色。结构参考约束轮廓，实景参考约束细部；背面未知部分仅作示意。浅色框架、水平蓝绿色窗带，多栋有序临床楼，保持参考中的楼间间隔与屋顶退台。楼群参考仅用于装配，生成时逐栋处理。",
+    "generation_gate": "先复核实景与单体结构；楼群需逐栋准备干净参考，不直接把楼群整体提交。",
+    "task_id": null,
+    "model_version": null,
+    "license": null,
+    "output": null,
+    "acceptance": [
+      "轮廓和方向与俯视/实景一致",
+      "屋顶和玻璃材质可分离",
+      "无封堵庭院和连廊接口",
+      "背面与薄檐无严重破面",
+      "UV和纹理完整；不将文字/UI生成为几何",
+      "导入Blender校准尺寸和位置后，再进行网页视觉与交互验证"
+    ]
+  },
+  {
+    "asset_id": "inpatient",
+    "name": "住院楼群",
+    "status": "draft_not_submitted",
+    "priority": 2,
+    "input_views": [
+      "parts/inpatient/front-three-quarter.png"
+    ],
+    "prompt": "制作独立可用于实时三维的建筑外观资产。中性日光、真实但克制的浅灰石材与蓝绿色玻璃，细部清晰。仅主体、无背景、无地形、无道路、无树木、无人车、无文字标牌、无UI。不要将窗光、阴影、强高光烘成日夜不可切换的颜色。结构参考约束轮廓，实景参考约束细部；背面未知部分仅作示意。多栋较高的临床板楼，浅色竖向构件、连续水平窗带、清晰层间线及屋顶退台。楼群参考仅用于装配，生成时逐栋处理。",
+    "generation_gate": "先复核实景与单体结构；楼群需逐栋准备干净参考，不直接把楼群整体提交。",
+    "task_id": null,
+    "model_version": null,
+    "license": null,
+    "output": null,
+    "acceptance": [
+      "轮廓和方向与俯视/实景一致",
+      "屋顶和玻璃材质可分离",
+      "无封堵庭院和连廊接口",
+      "背面与薄檐无严重破面",
+      "UV和纹理完整；不将文字/UI生成为几何",
+      "导入Blender校准尺寸和位置后，再进行网页视觉与交互验证"
+    ]
+  },
+  {
+    "asset_id": "medtech",
+    "name": "医技主体",
+    "status": "draft_not_submitted",
+    "priority": 2,
+    "input_views": [
+      "parts/medtech/front-three-quarter.png"
+    ],
+    "prompt": "制作独立可用于实时三维的建筑外观资产。中性日光、真实但克制的浅灰石材与蓝绿色玻璃，细部清晰。仅主体、无背景、无地形、无道路、无树木、无人车、无文字标牌、无UI。不要将窗光、阴影、强高光烘成日夜不可切换的颜色。结构参考约束轮廓，实景参考约束细部；背面未知部分仅作示意。低层医技体量、内庭院与中央玻璃连接轴，保留两侧连接裙房接口，不填满中庭，不添加高塔。",
+    "generation_gate": "接入后核实支持的输入方式、模型版本与额度；先单件试制。",
+    "task_id": null,
+    "model_version": null,
+    "license": null,
+    "output": null,
+    "acceptance": [
+      "轮廓和方向与俯视/实景一致",
+      "屋顶和玻璃材质可分离",
+      "无封堵庭院和连廊接口",
+      "背面与薄檐无严重破面",
+      "UV和纹理完整；不将文字/UI生成为几何",
+      "导入Blender校准尺寸和位置后，再进行网页视觉与交互验证"
+    ]
+  },
+  {
+    "asset_id": "parking",
+    "name": "停车楼",
+    "status": "draft_not_submitted",
+    "priority": 2,
+    "input_views": [
+      "parts/parking/front-three-quarter.png"
+    ],
+    "prompt": "制作独立可用于实时三维的建筑外观资产。中性日光、真实但克制的浅灰石材与蓝绿色玻璃，细部清晰。仅主体、无背景、无地形、无道路、无树木、无人车、无文字标牌、无UI。不要将窗光、阴影、强高光烘成日夜不可切换的颜色。结构参考约束轮廓，实景参考约束细部；背面未知部分仅作示意。横向展开的多层停车楼，圆角端头，规则水平开口和楼板带，平屋顶；保留建筑占地与层高节奏。",
+    "generation_gate": "接入后核实支持的输入方式、模型版本与额度；先单件试制。",
+    "task_id": null,
+    "model_version": null,
+    "license": null,
+    "output": null,
+    "acceptance": [
+      "轮廓和方向与俯视/实景一致",
+      "屋顶和玻璃材质可分离",
+      "无封堵庭院和连廊接口",
+      "背面与薄檐无严重破面",
+      "UV和纹理完整；不将文字/UI生成为几何",
+      "导入Blender校准尺寸和位置后，再进行网页视觉与交互验证"
+    ]
+  },
+  {
+    "asset_id": "waiting-seat",
+    "name": "候诊连排座椅",
+    "status": "text_brief_only",
+    "priority": 3,
+    "prompt": "一组现代医院三人连排候诊椅，蓝色坐面，银灰金属横梁，两组独立支脚，符合人体比例，单个完整物件，无人无环境。",
+    "input_views": [],
+    "task_id": null,
+    "model_version": null,
+    "license": null,
+    "output": null,
+    "generation_gate": "后续准备单体视觉参考或使用支持的文本生成；每类先验一个样件，禁止批量复制低质量结果。"
+  },
+  {
+    "asset_id": "reception-desk",
+    "name": "导诊台",
+    "status": "text_brief_only",
+    "priority": 3,
+    "prompt": "现代医院弧形导诊台，白色实体面材、浅木饰面、蓝色局部装饰，完整背侧工作台与踢脚，单体无文字无人。",
+    "input_views": [],
+    "task_id": null,
+    "model_version": null,
+    "license": null,
+    "output": null,
+    "generation_gate": "后续准备单体视觉参考或使用支持的文本生成；每类先验一个样件，禁止批量复制低质量结果。"
+  },
+  {
+    "asset_id": "car",
+    "name": "小型轿车",
+    "status": "text_brief_only",
+    "priority": 3,
+    "prompt": "普通现代四门轿车，白色车身、深灰轮胎、蓝灰玻璃，无品牌和车牌文字，完整四轮，单体。",
+    "input_views": [],
+    "task_id": null,
+    "model_version": null,
+    "license": null,
+    "output": null,
+    "generation_gate": "后续准备单体视觉参考或使用支持的文本生成；每类先验一个样件，禁止批量复制低质量结果。"
+  },
+  {
+    "asset_id": "tree",
+    "name": "阔叶乔木",
+    "status": "text_brief_only",
+    "priority": 3,
+    "prompt": "一棵自然形态阔叶乔木，清晰树干分枝与有层次的绿色树冠，适合医院园林，无底座无土块无背景，单体。",
+    "input_views": [],
+    "task_id": null,
+    "model_version": null,
+    "license": null,
+    "output": null,
+    "generation_gate": "后续准备单体视觉参考或使用支持的文本生成；每类先验一个样件，禁止批量复制低质量结果。"
+  }
+]

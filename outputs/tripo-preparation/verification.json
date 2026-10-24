@@ -1,0 +1,66 @@
+{
+  "glb_mesh_membership": [
+    {
+      "id": "outpatient",
+      "mesh_mapping": "passed",
+      "glb_bytes": 1480608
+    },
+    {
+      "id": "emergency",
+      "mesh_mapping": "passed",
+      "glb_bytes": 12516
+    },
+    {
+      "id": "children",
+      "mesh_mapping": "passed",
+      "glb_bytes": 278368
+    },
+    {
+      "id": "inpatient",
+      "mesh_mapping": "passed",
+      "glb_bytes": 379940
+    },
+    {
+      "id": "medtech",
+      "mesh_mapping": "passed",
+      "glb_bytes": 132316
+    },
+    {
+      "id": "parking",
+      "mesh_mapping": "passed",
+      "glb_bytes": 126740
+    },
+    {
+      "id": "environment",
+      "mesh_mapping": "passed",
+      "glb_bytes": 8063340
+    },
+    {
+      "id": "floor_f1",
+      "mesh_mapping": "passed",
+      "glb_bytes": 198428
+    },
+    {
+      "id": "floor_f2",
+      "mesh_mapping": "passed",
+      "glb_bytes": 159552
+    },
+    {
+      "id": "floor_roof",
+      "mesh_mapping": "passed",
+      "glb_bytes": 32384
+    },
+    {
+      "id": "clinical_links",
+      "mesh_mapping": "passed",
+      "glb_bytes": 98404
+    },
+    {
+      "id": "zone_bindings",
+      "mesh_mapping": "passed",
+      "glb_bytes": 10800
+    }
+  ],
+  "performance_tested": false,
+  "submitted_to_tripo": false
+}
