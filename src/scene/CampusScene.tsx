@@ -203,9 +203,9 @@ export const CampusScene = forwardRef<SceneHandle, Props>(function CampusScene(p
     };
     async function load() {
       try {
-        const response = await fetch('/scene/manifest.json'); if (!response.ok) throw new Error('场景清单读取失败');
+        const response = await fetch(`${import.meta.env.BASE_URL}scene/manifest.json`); if (!response.ok) throw new Error('场景清单读取失败');
         const data: Manifest = await response.json();
-        const gltf = await new GLTFLoader().loadAsync(`/scene/${data.model}`);
+        const gltf = await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}scene/${data.model}`);
         if (!alive) { disposeModel(gltf.scene); return; }
         manifest = data; model = gltf.scene;
         model.traverse(o => {
