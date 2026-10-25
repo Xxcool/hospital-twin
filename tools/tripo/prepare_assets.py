@@ -5,8 +5,8 @@ from mathutils import Vector
 # MCP exec 环境无固定 __file__，调用方显式传入仓库根目录。
 if 'PROJECT_ROOT' not in globals():
     raise ValueError('请在 Blender MCP 执行前设置 PROJECT_ROOT 为仓库根目录')
-base=Path(PROJECT_ROOT).resolve()/'outputs/tripo-preparation'
-source=base.parent/'blender/tongji-current.blend'
+base=Path(PROJECT_ROOT).resolve()/'tools/tripo'
+source=Path(PROJECT_ROOT).resolve()/'assets/blender/tongji-current.blend'
 if bpy.data.filepath != str(source): bpy.ops.wm.open_mainfile(filepath=str(source))
 scene=bpy.context.scene
 roots=['outpatient','emergency','children','inpatient','medtech','parking','environment','floor_f1','floor_f2','floor_roof']
@@ -16,7 +16,7 @@ groups['clinical_links']=links
 groups['medtech']=[o for o in groups['medtech'] if o not in links]
 groups['zone_bindings']=[o for o in scene.objects if o.name.startswith('zone_')]
 for n in ['floor_f1','floor_f2']: groups[n]=[o for o in groups[n] if not o.name.startswith('zone_')]
-manifest={'source':str(source),'source_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'status':'preparation_only_not_submitted','units':'metres, photographic estimate','axes':'Blender X east Y north Z up; GLB X east Y up Z south','placement':'world coordinates preserved; do not recenter these assembly references','assets':[]}
+manifest={'source':'../../assets/blender/tongji-current.blend','source_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'status':'preparation_only_not_submitted','units':'metres, photographic estimate','axes':'Blender X east Y north Z up; GLB X east Y up Z south','placement':'world coordinates preserved; do not recenter these assembly references','assets':[]}
 for n,objs in groups.items():
     folder=base/'parts'/n; folder.mkdir(parents=True,exist_ok=True)
     for o in bpy.data.objects: o.select_set(False)

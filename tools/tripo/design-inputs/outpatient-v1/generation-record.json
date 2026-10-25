@@ -5,7 +5,7 @@
   "date": "2026-10-23",
   "inputs": [
     "../../references/entrance-real-photo.png",
-    "../../../design-proposals/day-night-v2/01-日间总览.png"
+    "../../../../docs/design/day-night-v2/01-日间总览.png"
   ],
   "outputs": [
     {

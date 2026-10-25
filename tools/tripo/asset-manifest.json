@@ -1,5 +1,5 @@
 {
-  "source": "../blender/tongji-current.blend",
+  "source": "../../assets/blender/tongji-current.blend",
   "source_sha256": "dcecdb2058a4799f8c2215539eba12eaad7c9dc9c0346a45b55bf3b27cde13ec",
   "status": "preparation_only_not_submitted",
   "units": "metres, photographic estimate",

@@ -1,5 +1,5 @@
 // 演示快照与区域身份的唯一消费入口；所有面板和场景共用同一时段快照。
-import baseline from '../../../design-proposals/snapshot.json';
+import baseline from '../../docs/design/snapshot.json';
 
 export const regions = [
   { id: 'outpatient', number: '01', name: '综合门诊', short: '门诊' },
