@@ -8,9 +8,9 @@
 
 ## 实际运行预览
 
-[![院区日间运行截图](docs/verification/runtime-life-day.png)](https://xxcool.github.io/tongji-hospital-3d-dashboard)
+[![院区日间运行截图](docs/images/campus-overview-2026-10-26.png)](https://xxcool.github.io/tongji-hospital-3d-dashboard)
 
-上图为开发过程中的实际网页截图。当前模型仍在迭代，设计效果图另见[设计资料](docs/design/方案说明.md)，不作为已实现品质展示。
+上图为 2026-10-26 在线演示的院区总览实拍截图。当前模型仍在迭代，设计效果图另见[设计资料](docs/design/方案说明.md)，不作为已实现品质展示。
 
 ## 从院区空间理解运行状态
 
