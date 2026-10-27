@@ -73,10 +73,15 @@ npm run dev
 | 命令 | 用途 |
 |---|---|
 | `npm run dev` | 启动开发服务 |
-| `npm run typecheck` | TypeScript 类型检查 |
-| `npm test` | 验证模拟数据与资源分配规则 |
+| `npm run typecheck` | TypeScript 类型与未使用符号检查 |
+| `npm run lint` | 通用代码规范与 React Hooks 检查 |
+| `npm run format:check` | 检查源码与配置格式 |
+| `npm run format` | 格式化源码与配置 |
+| `npm test` | 验证模拟数据、资源分配和标签布局/遮挡规则 |
 | `npm run build` | 类型检查并生成 `dist/` |
 | `npm run preview` | 本地预览生产构建 |
+
+场景逻辑位于 `src/scene/`：`CampusScene.tsx` 管理生命周期，`camera.ts`、`lighting.ts`、`floors.ts`、`labels.ts` 分别负责取景、主题、楼层和空间标签。ESLint 使用 Babel 解析 TS/TSX，类型检查由 TypeScript 7 负责；CI 同时运行规范、格式、测试和构建检查。
 
 ## 项目结构
 
