@@ -2,13 +2,13 @@
 
 一个可以从院区走进楼层、从建筑定位到服务分区的三维运行大屏。以门急诊服务压力与资源分布为主线，将建筑选择、镜头移动、指标面板和时段变化连接起来。
 
-**[在线体验](https://xxcool.github.io/tongji-hospital-3d-dashboard)** · [设计与实现进度](docs/design/方案说明.md) · [三维资产制作资料](tools/tripo/README.md)
+**[在线体验](https://xxcool.github.io/hospital-twin)** · [设计与实现进度](docs/design/方案说明.md) · [三维资产制作资料](tools/tripo/README.md)
 
 > 非医院官方项目。运行指标均为模拟数据，内部空间采用示意设计；建筑尺寸根据参考资料估计，不用于实际导航、医疗或运营决策。
 
 ## 实际运行预览
 
-[![院区日间运行截图](docs/images/campus-overview-2026-10-26.png)](https://xxcool.github.io/tongji-hospital-3d-dashboard)
+[![院区日间运行截图](docs/images/campus-overview-2026-10-26.png)](https://xxcool.github.io/hospital-twin)
 
 上图为 2026-10-26 在线演示的院区总览实拍截图。当前模型仍在迭代，设计效果图另见[设计资料](docs/design/方案说明.md)，不作为已实现品质展示。
 
@@ -62,8 +62,8 @@
 建议使用 Node.js 22.12+ 及 npm。前端不依赖真实医院接口，不需要 API 密钥。
 
 ```bash
-git clone https://github.com/Xxcool/tongji-hospital-3d-dashboard.git
-cd tongji-hospital-3d-dashboard
+git clone https://github.com/Xxcool/hospital-twin.git
+cd hospital-twin
 npm ci
 npm run dev
 ```
