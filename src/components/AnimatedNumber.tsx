@@ -5,8 +5,13 @@ export function AnimatedNumber({ value, grouped = false }: { value: number; grou
   const [shown, setShown] = useState(value);
   const current = useRef(value);
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { current.current = value; setShown(value); return; }
-    const from = current.current, started = performance.now();
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      current.current = value;
+      setShown(value);
+      return;
+    }
+    const from = current.current,
+      started = performance.now();
     let raf = 0;
     const tick = (now: number) => {
       const t = Math.min(1, (now - started) / 650);
