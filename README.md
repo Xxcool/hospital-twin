@@ -115,3 +115,12 @@ tools/tripo/                # 三维资产拆分清单、提示词与单体制�
 ## 参考资料与使用说明
 
 本演示基于公开照片与资料进行外观研究与三维原型探索，其权利归原权利人所有。AI 设计图仅作视觉目标参考，内部空间与运行数据均为演示设定，不代表同济医院官方立场或实际运营决策。
+
+## 👨‍💻 作者 (Author)
+
+- **Xxcool** - [GitHub (@Xxcool)](https://github.com/Xxcool) · [掘金技术主页](https://juejin.cn/user/4265760845468296/posts)
+
+## 📄 开源许可 (License)
+
+本项目遵循 [MIT License](LICENSE) 开源协议。
+
