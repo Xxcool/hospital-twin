@@ -1,6 +1,7 @@
 // 场景容器负责 React 接口、加载、渲染调度与清理；相机、灯光、楼层和标签各自维护。
 import {
   forwardRef,
+  useCallback,
   useEffect,
   useImperativeHandle,
   useLayoutEffect,
@@ -32,6 +33,8 @@ export const CampusScene = forwardRef<SceneHandle, SceneProps>(function CampusSc
   const [phase, setPhase] = useState<LoadingPhase>('resources');
   const [download, setDownload] = useState({ loaded: 0, total: 0 });
   const [ready, setReady] = useState(false);
+  const [loadingVisible, setLoadingVisible] = useState(true);
+  const dismissLoading = useCallback(() => setLoadingVisible(false), []);
   const [error, setError] = useState('');
   useImperativeHandle(
     ref,
@@ -53,6 +56,7 @@ export const CampusScene = forwardRef<SceneHandle, SceneProps>(function CampusSc
     const started = performance.now();
     let loadMs = 0;
     let firstFrame = false;
+    let scenePrepared = false;
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-200, 200, 120, -120, 1, 1800);
     const renderer = new THREE.WebGLRenderer({
@@ -197,6 +201,7 @@ export const CampusScene = forwardRef<SceneHandle, SceneProps>(function CampusSc
         controls.update();
         resize();
         loadMs = performance.now() - started;
+        scenePrepared = true;
         setPhase('ready');
       } catch (e) {
         if (alive) {
@@ -266,7 +271,7 @@ export const CampusScene = forwardRef<SceneHandle, SceneProps>(function CampusSc
       lighting.update(p);
       lighting.render();
       // 模型完成首帧渲染后再撤下遮罩，不用计时器伪造就绪。
-      if (model && controls && !firstFrame) {
+      if (scenePrepared && model && controls && !firstFrame) {
         firstFrame = true;
         setReady(true);
       }
@@ -342,13 +347,14 @@ export const CampusScene = forwardRef<SceneHandle, SceneProps>(function CampusSc
           </button>
         ))}
       </div>
-      {!ready && (
+      {loadingVisible && (
         <SceneLoading
           phase={phase}
           downloaded={download.loaded}
           total={download.total}
           error={error}
-          night={props.night}
+          complete={ready}
+          onExited={dismissLoading}
         />
       )}
     </div>
