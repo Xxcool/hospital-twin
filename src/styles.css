@@ -1145,41 +1145,6 @@ button:hover {
   background: var(--glass-strong);
   font-size: 13px;
 }
-.model-status {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: #9bb5cb44;
-  color: var(--ink);
-  z-index: 1;
-}
-.model-status.failed {
-  flex-direction: column;
-  background: var(--glass-strong);
-  color: var(--coral);
-}
-.model-status button {
-  padding: 10px 20px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-}
-.loader {
-  width: 23px;
-  height: 23px;
-  border: 2px solid var(--line);
-  border-top-color: var(--blue);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *:before,

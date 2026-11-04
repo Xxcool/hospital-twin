@@ -8,6 +8,7 @@ import {
   useState,
 } from 'react';
 import * as THREE from 'three';
+import { SceneLoading, type LoadingPhase } from '../components/SceneLoading';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { regions, type RegionId } from '../data/model';
@@ -28,8 +29,10 @@ export const CampusScene = forwardRef<SceneHandle, SceneProps>(function CampusSc
   });
   const api = useRef<SceneHandle | null>(null);
   const labels = useRef(new Map<string, HTMLButtonElement>());
-  const [status, setStatus] = useState('正在加载院区模型');
-  const [error, setError] = useState(false);
+  const [phase, setPhase] = useState<LoadingPhase>('resources');
+  const [download, setDownload] = useState({ loaded: 0, total: 0 });
+  const [ready, setReady] = useState(false);
+  const [error, setError] = useState('');
   useImperativeHandle(
     ref,
     () => ({
@@ -49,6 +52,7 @@ export const CampusScene = forwardRef<SceneHandle, SceneProps>(function CampusSc
       manifest: Manifest | null = null;
     const started = performance.now();
     let loadMs = 0;
+    let firstFrame = false;
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-200, 200, 120, -120, 1, 1800);
     const renderer = new THREE.WebGLRenderer({
@@ -151,13 +155,20 @@ export const CampusScene = forwardRef<SceneHandle, SceneProps>(function CampusSc
         const response = await fetch(`${import.meta.env.BASE_URL}scene/manifest.json`);
         if (!response.ok) throw new Error('场景清单读取失败');
         const data: Manifest = await response.json();
+        if (!alive) return;
         const gltf = await new GLTFLoader().loadAsync(
           `${import.meta.env.BASE_URL}scene/${data.model}`,
+          (event) => {
+            if (!alive) return;
+            setDownload({ loaded: event.loaded, total: event.total });
+            if (event.total > 0 && event.loaded >= event.total) setPhase('scene');
+          },
         );
         if (!alive) {
           disposeModel(gltf.scene);
           return;
         }
+        setPhase('scene');
         manifest = data;
         model = gltf.scene;
         model.traverse((o) => {
@@ -186,11 +197,10 @@ export const CampusScene = forwardRef<SceneHandle, SceneProps>(function CampusSc
         controls.update();
         resize();
         loadMs = performance.now() - started;
-        setStatus('');
+        setPhase('ready');
       } catch (e) {
         if (alive) {
-          setError(true);
-          setStatus(e instanceof Error ? e.message : '三维加载失败');
+          setError(e instanceof Error ? e.message : '三维加载失败');
         }
       }
     }
@@ -255,6 +265,11 @@ export const CampusScene = forwardRef<SceneHandle, SceneProps>(function CampusSc
       controls?.update(Math.min(dt, 50) / 1000);
       lighting.update(p);
       lighting.render();
+      // 模型完成首帧渲染后再撤下遮罩，不用计时器伪造就绪。
+      if (model && controls && !firstFrame) {
+        firstFrame = true;
+        setReady(true);
+      }
       labelController?.update(p);
       if (model && dt < 250) {
         frameTimes.push(dt);
@@ -327,12 +342,14 @@ export const CampusScene = forwardRef<SceneHandle, SceneProps>(function CampusSc
           </button>
         ))}
       </div>
-      {status && (
-        <div className={`model-status ${error ? 'failed' : ''}`} role="status">
-          {!error && <span className="loader" />}
-          <strong>{status}</strong>
-          {error && <button onClick={() => location.reload()}>重新加载</button>}
-        </div>
+      {!ready && (
+        <SceneLoading
+          phase={phase}
+          downloaded={download.loaded}
+          total={download.total}
+          error={error}
+          night={props.night}
+        />
       )}
     </div>
   );
