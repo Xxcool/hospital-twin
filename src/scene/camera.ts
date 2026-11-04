@@ -56,17 +56,20 @@ export function createCameraController(
           halfHeight = Math.max(halfHeight, Math.abs(corner.dot(up)));
         }
     // 所选建筑完整进入中央安全区；邻近建筑仍作为背景，可由侧栏遮挡。
-    const scale = getProps().layout.scale;
+    const { focus: safe } = getProps().layout;
     const pixelsPerUnit = element.clientHeight / (camera.top - camera.bottom);
     goalZoom =
       Math.min(
         tour ? 1.2 : 1.55,
-        (980 * scale) / (2 * halfWidth * pixelsPerUnit),
-        (530 * scale) / (2 * halfHeight * pixelsPerUnit),
+        safe.width / (2 * halfWidth * pixelsPerUnit),
+        safe.height / (2 * halfHeight * pixelsPerUnit),
       ) * 0.92;
     goalTarget
       .copy(center)
-      .addScaledVector(up, (550 * scale - element.clientHeight / 2) / (pixelsPerUnit * goalZoom));
+      .addScaledVector(
+        up,
+        (safe.y + safe.height / 2 - element.clientHeight / 2) / (pixelsPerUnit * goalZoom),
+      );
     goalPosition.copy(goalTarget).addScaledVector(direction, 280);
     animating = true;
   };
@@ -103,7 +106,10 @@ export function createCameraController(
         .copy(center)
         .addScaledVector(
           up,
-          (540 * getProps().layout.scale - element.clientHeight / 2) / (pixelsPerUnit * goalZoom),
+          (getProps().layout.focus.y +
+            getProps().layout.focus.height / 2 -
+            element.clientHeight / 2) /
+            (pixelsPerUnit * goalZoom),
         );
       goalPosition.copy(goalTarget).addScaledVector(direction, 280);
       animating = true;
@@ -137,19 +143,19 @@ export function createCameraController(
           minY = Math.min(minY, v.dot(up));
           maxY = Math.max(maxY, v.dot(up));
         }
-    const { scale, top } = getProps().layout;
+    const { focus: safe } = getProps().layout;
     const pixelsPerUnit = element.clientHeight / (camera.top - camera.bottom);
     goalZoom =
       Math.min(
-        (1000 * scale) / ((maxX - minX) * pixelsPerUnit),
-        (540 * scale) / ((maxY - minY) * pixelsPerUnit),
+        safe.width / ((maxX - minX) * pixelsPerUnit),
+        safe.height / ((maxY - minY) * pixelsPerUnit),
       ) * 0.92;
-    // 安全区中心位于逻辑画布y=575，补偿全视口与UI居中的位置差。
+    // 取景对准实际中央窗口，避免宽高比变化后继续追踪固定设计坐标。
     goalTarget
       .copy(center)
       .addScaledVector(
         up,
-        (top + 550 * scale - element.clientHeight / 2) / (pixelsPerUnit * goalZoom),
+        (safe.y + safe.height / 2 - element.clientHeight / 2) / (pixelsPerUnit * goalZoom),
       );
     goalPosition.copy(goalTarget).addScaledVector(direction, 270);
     animating = true;

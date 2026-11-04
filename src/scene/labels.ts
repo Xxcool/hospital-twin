@@ -101,13 +101,7 @@ export function createLabelController(
   });
   return {
     update(p: SceneProps) {
-      const { scale, left, top } = p.layout;
-      const safe = {
-        x: left + 428 * scale,
-        y: top + 225 * scale,
-        width: 1064 * scale,
-        height: 605 * scale,
-      };
+      const { scale, labels: safe } = p.layout;
       const hostRect = host.getBoundingClientRect();
       const occupied: LabelRect[] = [];
       // 使用真实 UI 边界，覆盖导航、楼层提示、工具栏、详情抽屉和弹窗。

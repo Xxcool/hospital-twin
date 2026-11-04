@@ -1,5 +1,6 @@
 // 场景边界契约：React 提供状态和事件，Three.js 模块只消费已提交的状态。
 import type { Frame, RegionId } from '../data/model';
+import type { ViewportLayout } from '../layout';
 export type SceneMode = 'overview' | 'region' | 'tour' | 'floor' | 'rotate';
 export interface Manifest {
   model: string;
@@ -38,7 +39,7 @@ export interface SceneProps {
   floor: 'f1' | 'f2';
   zone: 'waiting' | 'consultation' | null;
   night: boolean;
-  layout: { scale: number; left: number; top: number };
+  layout: ViewportLayout;
   onSelect: (id: RegionId) => void;
   onTourRegion: (id: RegionId) => void;
   onManualNavigation: () => void;

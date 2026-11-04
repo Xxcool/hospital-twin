@@ -50,9 +50,9 @@ button:hover {
   --blue: #1462ff;
   --ink: #092d82;
   --muted: #5c7aab;
-  --line: #9fbeec70;
-  --glass: #eff7ffb8;
-  --glass-strong: #edf6ffed;
+  --line: #abd4f0a0;
+  --glass: linear-gradient(135deg, #f1fbfff2 0%, #dceffff0 55%, #cce8fff2 100%);
+  --glass-strong: #e6f4fffa;
   --hover: #7fb4ff2b;
   --chip: #9ecaff32;
   --chart-line: #95b6d14d;
@@ -88,8 +88,8 @@ button:hover {
 
 .glass {
   background: var(--glass);
-  backdrop-filter: blur(18px) saturate(115%);
-  -webkit-backdrop-filter: blur(18px) saturate(115%);
+  backdrop-filter: blur(24px) saturate(125%);
+  -webkit-backdrop-filter: blur(24px) saturate(125%);
   border: 1px solid var(--line);
   border-radius: 20px;
   box-shadow:
@@ -1031,7 +1031,7 @@ button:hover {
   right: calc(var(--rail) + 2 * var(--pad));
   top: calc(var(--header) + 70px);
   width: 320px;
-  max-height: calc(1080px - var(--header) - var(--footer) - 110px);
+  max-height: calc(var(--dashboard-height) - var(--header) - var(--footer) - 110px);
   overflow: auto;
   padding: 22px;
   background: var(--glass-strong);
@@ -1182,11 +1182,10 @@ button:hover {
   padding-block: 12px;
 }
 
-/* UI 使用 1920×1080 逻辑坐标；三维画布独立铺满浏览器，避免比例变化挤压卡片。 */
+/* UI 保持设计比例，实际逻辑宽高扩展至窗口边缘。 */
 .dashboard {
   position: absolute;
-  width: 1920px;
-  height: 1080px;
+  inset: 0 auto auto 0;
   transform-origin: 0 0;
   pointer-events: none;
 }
@@ -1280,16 +1279,9 @@ button:hover {
   font-size: calc(10 * var(--label-unit));
 }
 
-/* 场景与UI共享屏幕边界，楼层聚焦时不再向逻辑大屏之外溢出。 */
-/* 保留完整画布投影比例；上、左、右与面板18逻辑像素外沿对齐，底部避开回放栏。 */
+/* 模型铺满整个窗口并延伸到面板后方；仅标签保留中央避让边界。 */
 .scene-stage {
-  right: auto;
-  bottom: auto;
   overflow: hidden;
-  clip-path: inset(
-    calc(18 * var(--label-unit)) calc(18 * var(--label-unit)) calc(118 * var(--label-unit))
-      calc(18 * var(--label-unit))
-  );
 }
 
 /* 标识及引线整体裁切到中央窗口，防止透过毛玻璃面板。 */
@@ -1432,7 +1424,7 @@ button:hover {
   --ink: #eaf2ff;
   --muted: #a4bad8;
   --line: #72a9e64d;
-  --glass: linear-gradient(155deg, #315071ba 0%, #122d50d1 42%, #071b35e0 100%);
+  --glass: linear-gradient(155deg, #315071ef 0%, #122d50f2 42%, #071b35f5 100%);
   --chip: #345d8d38;
   --hover: #388bff25;
 }
@@ -1446,7 +1438,7 @@ button:hover {
   -webkit-backdrop-filter: blur(18px) saturate(125%);
 }
 .viewport[data-theme='night'] .screen-header {
-  background: linear-gradient(115deg, #29486ac9 0%, #0a2549dc 50%, #10355ac9 100%);
+  background: linear-gradient(115deg, #29486af2 0%, #0a2549f5 50%, #10355af2 100%);
   box-shadow:
     inset 0 1px 0 #b5dfff55,
     inset 0 -1px 0 #3a8cff33,
@@ -1477,7 +1469,7 @@ button:hover {
     0 0 12px #1688ff30;
 }
 .viewport[data-theme='night'] .playback {
-  background: linear-gradient(110deg, #2a4664c4, #0a2344dc 55%, #16365ac9);
+  background: linear-gradient(110deg, #2a4664f2, #0a2344f5 55%, #16365af2);
 }
 .viewport[data-theme='night'] .zone-buttons button:first-child,
 .viewport[data-theme='night'] .resource-bar > span {

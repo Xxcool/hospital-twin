@@ -1,4 +1,5 @@
 // 场景容器负责 React 接口、加载、渲染调度与清理；相机、灯光、楼层和标签各自维护。
+import { getViewportLayout } from '../layout';
 import {
   forwardRef,
   useCallback,
@@ -114,7 +115,13 @@ export const CampusScene = forwardRef<SceneHandle, SceneProps>(function CampusSc
       renderer.setPixelRatio(dpr);
       renderer.setSize(width, height);
       lighting.resize(width, height, dpr);
-      const halfH = Math.max(manifest?.camera.orthoHeight ?? 230, (380 * height) / width) / 2;
+      const { scale } = getViewportLayout(width, height);
+      // 扩展视口增加可见世界范围，保持建筑相对界面的比例。
+      const halfH =
+        Math.max(
+          ((manifest?.camera.orthoHeight ?? 230) * height) / (1080 * scale),
+          (380 * height) / width,
+        ) / 2;
       camera.left = (-halfH * width) / height;
       camera.right = (halfH * width) / height;
       camera.top = halfH;
@@ -232,7 +239,7 @@ export const CampusScene = forwardRef<SceneHandle, SceneProps>(function CampusSc
       const changedFloor = lastFloor !== p.floor;
       const changedZone = lastZone !== p.zone;
       lastZone = p.zone;
-      const layoutKey = `${p.layout.scale}/${p.layout.left}/${p.layout.top}`;
+      const layoutKey = `${p.layout.width}/${p.layout.height}`;
       const changedLayout = lastLayout !== layoutKey;
       lastLayout = layoutKey;
       if (manifest && controls && model) {

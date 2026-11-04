@@ -54,3 +54,27 @@ test('正交射线隐藏被其他建筑挡住的标签，忽略自身及已隐�
   mesh.geometry.dispose();
   material.dispose();
 });
+
+test('扩展窗口保留界面比例，并同步扩展标签和相机安全区', async () => {
+  const { getViewportLayout } = await import('../layout');
+  const base = getViewportLayout(1920, 1080);
+  assert.deepEqual(base.labels, { x: 428, y: 225, width: 1064, height: 605 });
+  assert.deepEqual(base.focus, { x: 470, y: 285, width: 980, height: 530 });
+  const wide = getViewportLayout(2560, 1080);
+  assert.equal(wide.scale, base.scale);
+  assert.equal(wide.focus.width - base.focus.width, 640);
+  assert.equal(wide.labels.width - base.labels.width, 640);
+  const short = getViewportLayout(1440, 810);
+  const tall = getViewportLayout(1440, 900);
+  assert.equal(tall.scale, short.scale);
+  assert.equal(tall.focus.height - short.focus.height, 90);
+  assert.equal(tall.labels.height - short.labels.height, 90);
+  for (const layout of [base, wide, short, tall, getViewportLayout(1280, 720)]) {
+    assert.equal(layout.logicalWidth * layout.scale, layout.width);
+    assert.equal(layout.logicalHeight * layout.scale, layout.height);
+    assert.ok(layout.focus.x > layout.labels.x);
+    assert.ok(layout.focus.y > layout.labels.y);
+    assert.ok(layout.focus.y + layout.focus.height < layout.labels.y + layout.labels.height);
+    assert.equal(layout.focus.x + layout.focus.width / 2, layout.width / 2);
+  }
+});

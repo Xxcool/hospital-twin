@@ -1,4 +1,5 @@
 // 已确认日夜与楼层v2的整屏入口；统一管理区域、回放时段与场景操作。
+import { getViewportLayout } from './layout';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   CampusScene,
@@ -36,22 +37,14 @@ export default function App() {
   const [performanceSample, setPerformanceSample] = useState<PerformanceSample | null>(null);
   const [fullscreen, setFullscreen] = useState(Boolean(document.fullscreenElement));
   const [message, setMessage] = useState('');
-  // 固定设计画布等比适配；设备像素比只由三维渲染器处理。
+  // 界面等比缩放，逻辑画布随实际窗口扩展到四边。
   const viewport = useRef<HTMLElement>(null);
-  const [fit, setFit] = useState(() => {
-    const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
-    return {
-      scale,
-      left: (window.innerWidth - 1920 * scale) / 2,
-      top: (window.innerHeight - 1080 * scale) / 2,
-    };
-  });
+  const [fit, setFit] = useState(() => getViewportLayout(window.innerWidth, window.innerHeight));
   useEffect(() => {
     const element = viewport.current!;
     const observer = new ResizeObserver(([entry]) => {
       const { width, height } = entry.contentRect;
-      const scale = Math.min(width / 1920, height / 1080);
-      setFit({ scale, left: (width - 1920 * scale) / 2, top: (height - 1080 * scale) / 2 });
+      if (width && height) setFit(getViewportLayout(width, height));
     });
     observer.observe(element);
     return () => observer.disconnect();
@@ -150,13 +143,14 @@ export default function App() {
       ref={viewport}
       className="viewport"
       data-theme={night ? 'night' : 'day'}
-      style={{ '--label-unit': `${fit.scale}px` } as React.CSSProperties}
+      style={
+        {
+          '--label-unit': `${fit.scale}px`,
+          '--dashboard-height': `${fit.logicalHeight}px`,
+        } as React.CSSProperties
+      }
     >
-      <section
-        className="scene-stage"
-        aria-label="院区交互场景"
-        style={{ left: fit.left, top: fit.top, width: 1920 * fit.scale, height: 1080 * fit.scale }}
-      >
+      <section className="scene-stage" aria-label="院区交互场景">
         <CampusScene
           ref={scene}
           selected={selected}
@@ -165,7 +159,7 @@ export default function App() {
           floor={floor}
           zone={zone}
           night={night}
-          layout={{ scale: fit.scale, left: 0, top: 0 }}
+          layout={fit}
           onSelect={choose}
           onTourRegion={setSelected}
           onManualNavigation={() => {
@@ -178,7 +172,11 @@ export default function App() {
 
       <div
         className="dashboard"
-        style={{ left: fit.left, top: fit.top, transform: `scale(${fit.scale})` }}
+        style={{
+          width: fit.logicalWidth,
+          height: fit.logicalHeight,
+          transform: `scale(${fit.scale})`,
+        }}
       >
         <header className="screen-header glass">
           <div className="brand">
