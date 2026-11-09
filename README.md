@@ -77,16 +77,16 @@ npm run dev
 
 打开终端提示的本地地址（默认是 `http://127.0.0.1:5173/`）。
 
-| 命令                   | 用途                                                    |
-| ---------------------- | ------------------------------------------------------- |
-| `npm run dev`          | 启动本地 Vite 开发服务                                  |
-| `npm run typecheck`    | TypeScript 类型检查与未使用符号验证                     |
-| `npm run lint`         | ESLint 代码规范与 React Hooks 检查                      |
-| `npm run format:check` | 检查源码与配置 Prettier 格式                            |
-| `npm run format`       | 自动格式化源码与配置                                    |
-| `npm test`             | 验证模拟数据、资源分区守恒、视口适配与标签布局/遮挡规则 |
-| `npm run build`        | 类型检查并打包生产构建（`dist/`）                       |
-| `npm run preview`      | 本地预览生产构建产物                                    |
+| 命令                   | 用途                                                |
+| ---------------------- | --------------------------------------------------- |
+| `npm run dev`          | 启动本地 Vite 开发服务                              |
+| `npm run typecheck`    | TypeScript 类型检查与未使用符号验证                 |
+| `npm run lint`         | ESLint 代码规范与 React Hooks 检查                  |
+| `npm run format:check` | 检查源码与配置 Prettier 格式                        |
+| `npm run format`       | 自动格式化源码与配置                                |
+| `npm test`             | 验证模拟数据、视口适配、标签布局/遮挡与拾取手势规则 |
+| `npm run build`        | 类型检查并打包生产构建（`dist/`）                   |
+| `npm run preview`      | 本地预览生产构建产物                                |
 
 ## Blender MCP 与模型资产
 
@@ -109,6 +109,7 @@ src/scene/                  # Three.js 三维场景模块
   ├── camera.ts             # 建筑包围盒自适应取景、缓动过渡与巡游控制
   ├── lighting.ts           # 日间天光与夜间点光源、色调渐变管理
   ├── floors.ts             # 门诊 1F/2F 楼层展开高度与动画计算
+  ├── picking.ts            # 点击/拖拽判定、指针配对与多指手势隔离
   ├── labels.ts             # 空间标签投影、正交射线遮挡剔除与避让算法
   └── resources.ts          # 模型与贴图实例缓存与安全销毁
 src/data/                   # 演示数据模型、时段快照与单元测试
@@ -127,6 +128,7 @@ tools/tripo/                # 三维资产拆分清单、提示词与单体制�
 
 - **数据与计算契约**：`src/data/model.test.ts` 验证各时段总览指标等于各区域分项求和，资源分区严格守恒，时段快照递增。
 - **标签布局与视线剔除**：`src/scene/labels.test.ts` 验证同坐标标签空间避让、安全区边界限制以及正交射线穿透遮挡建筑时的自动隐藏。
+- **拾取手势**：验证拖远后返回起点、小幅抖动、指针配对、多指交错与取消/失焦清理，防止旋转或缩放结束时误选建筑。
 - **工程规范合规**：TypeScript 严苛类型检查、ESLint React Hooks 规范与 Prettier 风格自动化检查。
 - **视口与交互**：校验扩展画布的布局计算，并在浏览器检查面板贴边、标签安全区、建筑聚焦、楼层/分区切换和全屏切换。
 - **验证边界**：本次未覆盖目标大屏硬件、跨浏览器或长时间稳定性测试；详情参见 [当前设计与制作进度说明](docs/design/方案说明.md)。

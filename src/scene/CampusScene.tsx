@@ -1,5 +1,6 @@
 // 场景容器负责 React 接口、加载、渲染调度与清理；相机、灯光、楼层和标签各自维护。
 import { getViewportLayout } from '../layout';
+import { createClickGesture } from './picking';
 import {
   forwardRef,
   useCallback,
@@ -133,17 +134,23 @@ export const CampusScene = forwardRef<SceneHandle, SceneProps>(function CampusSc
     resize();
     const raycaster = new THREE.Raycaster(),
       pointer = new THREE.Vector2();
-    let down: [number, number] | null = null;
+    const gesture = createClickGesture();
+    const ownerDocument = renderer.domElement.ownerDocument;
     const onDown = (e: PointerEvent) => {
-      down = [e.clientX, e.clientY];
+      gesture.down(e);
       cameraController.cancel();
       propsRef.current.onManualNavigation();
     };
     const onUp = (e: PointerEvent) => {
-      const origin = down;
-      down = null;
-      if (!origin || Math.hypot(e.clientX - origin[0], e.clientY - origin[1]) > 6 || !model) return;
+      if (!gesture.up(e) || !model) return;
       const rect = renderer.domElement.getBoundingClientRect();
+      if (
+        e.clientX < rect.left ||
+        e.clientX >= rect.right ||
+        e.clientY < rect.top ||
+        e.clientY >= rect.bottom
+      )
+        return;
       pointer.set(
         ((e.clientX - rect.left) / rect.width) * 2 - 1,
         (-(e.clientY - rect.top) / rect.height) * 2 + 1,
@@ -158,8 +165,18 @@ export const CampusScene = forwardRef<SceneHandle, SceneProps>(function CampusSc
         }
       }
     };
+    const onMove = (e: PointerEvent) => {
+      // 合并的移动采样也可能包含“拖远再返回”，不能只看最后一个坐标。
+      for (const sample of e.getCoalescedEvents?.() ?? []) gesture.move(sample);
+      gesture.move(e);
+    };
     renderer.domElement.addEventListener('pointerdown', onDown);
-    renderer.domElement.addEventListener('pointerup', onUp);
+    renderer.domElement.addEventListener('lostpointercapture', gesture.cancel);
+    // 沿用OrbitControls的捕获机制，在文档上跟踪移出画布后的手势结束。
+    ownerDocument.addEventListener('pointermove', onMove);
+    ownerDocument.addEventListener('pointerup', onUp);
+    ownerDocument.addEventListener('pointercancel', gesture.cancel);
+    window.addEventListener('blur', gesture.clear);
 
     async function load() {
       try {
@@ -311,7 +328,12 @@ export const CampusScene = forwardRef<SceneHandle, SceneProps>(function CampusSc
       observer.disconnect();
       controls?.dispose();
       renderer.domElement.removeEventListener('pointerdown', onDown);
-      renderer.domElement.removeEventListener('pointerup', onUp);
+      renderer.domElement.removeEventListener('lostpointercapture', gesture.cancel);
+      ownerDocument.removeEventListener('pointermove', onMove);
+      ownerDocument.removeEventListener('pointerup', onUp);
+      ownerDocument.removeEventListener('pointercancel', gesture.cancel);
+      window.removeEventListener('blur', gesture.clear);
+      gesture.clear();
       if (model) disposeModel(model);
       lighting.dispose();
       renderer.dispose();
