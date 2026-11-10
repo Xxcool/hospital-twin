@@ -1,8 +1,17 @@
 // 场景边界契约：React 提供状态和事件，Three.js 模块只消费已提交的状态。
 import type { Frame, RegionId } from '../data/model';
 import type { ViewportLayout } from '../layout';
+import type { VehicleSpec } from './traffic';
 export type SceneMode = 'overview' | 'region' | 'tour' | 'floor' | 'rotate';
 export interface Manifest {
+  ambientLife: {
+    roadHalfWidth: number;
+    cars: number;
+    pedestrians: number;
+    mode: string;
+    lanes: { id: string; points: [number, number, number][] }[];
+    vehicles: VehicleSpec[];
+  };
   model: string;
   camera: {
     position: [number, number, number];

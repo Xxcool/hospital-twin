@@ -8,7 +8,7 @@
     "typecheck": "tsc --noEmit",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "test": "tsx --test src/data/model.test.ts src/scene/labels.test.ts src/scene/picking.test.ts",
+    "test": "tsx --test src/data/model.test.ts src/scene/labels.test.ts src/scene/picking.test.ts src/scene/traffic.test.ts",
     "lint": "eslint src vite.config.ts eslint.config.js",
     "format": "prettier --write src vite.config.ts eslint.config.js package.json tsconfig.json .prettierrc.json",
     "format:check": "prettier --check src vite.config.ts eslint.config.js package.json tsconfig.json .prettierrc.json"

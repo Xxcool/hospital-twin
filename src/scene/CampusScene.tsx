@@ -1,6 +1,7 @@
 // 场景容器负责 React 接口、加载、渲染调度与清理；相机、灯光、楼层和标签各自维护。
 import { getViewportLayout } from '../layout';
 import { createClickGesture } from './picking';
+import { createAmbientController } from './ambient';
 import {
   forwardRef,
   useCallback,
@@ -78,6 +79,7 @@ export const CampusScene = forwardRef<SceneHandle, SceneProps>(function CampusSc
     const anchors = new Map<string, THREE.Object3D>();
     let lastMode: SceneMode | undefined;
     let lastFloor = '';
+    let ambientController: ReturnType<typeof createAmbientController> | null = null;
     let floorController: ReturnType<typeof createFloorController> | null = null;
     let labelController: ReturnType<typeof createLabelController> | null = null;
     let tourLeg = -1,
@@ -203,6 +205,7 @@ export const CampusScene = forwardRef<SceneHandle, SceneProps>(function CampusSc
           if (!(o instanceof THREE.Mesh)) return;
           lighting.prepareMesh(o);
         });
+        ambientController = createAmbientController(model, data.ambientLife);
         floorController = createFloorController(model, data);
         for (const id of [...regions.map((r) => r.id), 'floor_f1', 'floor_f2']) {
           const node = model.getObjectByName(`anchor_${id}`);
@@ -290,6 +293,7 @@ export const CampusScene = forwardRef<SceneHandle, SceneProps>(function CampusSc
           }
         }
       }
+      ambientController?.update(Math.min(dt, 50) / 1000);
       cameraController.update(dt);
       controls?.update(Math.min(dt, 50) / 1000);
       lighting.update(p);

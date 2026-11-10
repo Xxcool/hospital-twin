@@ -11,6 +11,7 @@ export function disposeModel(root: THREE.Object3D) {
   const textures = new Set<THREE.Texture>();
   root.traverse((object) => {
     if (!(object instanceof THREE.Mesh)) return;
+    if (object instanceof THREE.InstancedMesh) object.dispose();
     geometries.add(object.geometry);
     for (const material of Array.isArray(object.material) ? object.material : [object.material]) {
       materials.add(material);
