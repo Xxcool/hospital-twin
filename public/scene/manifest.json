@@ -1,6 +1,6 @@
 {
   "version": "approved-representative",
-  "model": "tongji-current.glb",
+  "model": "tongji-current.glb?v=3398dee66152",
   "units": "metres, photographic estimate",
   "axes": "Blender X east Y north Z up; glTF X east Y up Z south",
   "anchors": {
