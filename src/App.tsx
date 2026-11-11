@@ -17,6 +17,7 @@ import {
   type RegionId,
 } from './data/model';
 import { Icon } from './components/Icon';
+import { LocalClock } from './components/LocalClock';
 import { Trend } from './components/Trend';
 import { AnimatedNumber } from './components/AnimatedNumber';
 
@@ -231,12 +232,7 @@ export default function App() {
             ))}
           </div>
           <div className="header-utilities">
-            <span className="clock">
-              <Icon name="clock" size={24} />
-              <strong data-testid="active-time" title="当前模拟回放时段">
-                {frame.time}
-              </strong>
-            </span>
+            <LocalClock />
             <button aria-label="项目说明" title="项目说明" onClick={() => setShowInfo(true)}>
               <Icon name="info" size={20} />
             </button>
@@ -628,7 +624,12 @@ export default function App() {
 
         <footer className="playback glass">
           <div className="playback-label">
-            时段回放
+            <div className="playback-title">
+              <span>时段回放</span>
+              <small role="status">
+                {playing ? '回放中' : lightMode === 'replay' ? '回放预览' : '模拟数据'}
+              </small>
+            </div>
             <button
               aria-label={playing ? '暂停回放' : '播放回放'}
               className="play-button"
@@ -655,7 +656,7 @@ export default function App() {
               >
                 <span className="period-label">
                   <i />
-                  <strong>{p.hour}</strong>
+                  <strong data-testid={i === period ? 'active-time' : undefined}>{p.hour}</strong>
                   <span>{p.name}</span>
                 </span>
               </button>

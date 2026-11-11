@@ -216,17 +216,34 @@ button:hover {
 }
 .clock {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
   white-space: nowrap;
+}
+.clock-date {
+  display: flex;
+  gap: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+.clock-time {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  line-height: 1;
 }
 .clock svg {
   color: var(--blue);
 }
 .clock strong {
   font:
-    38px HospitalDIN,
+    40px HospitalDIN,
     sans-serif;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1px;
 }
 
 .top-nav {
@@ -736,6 +753,17 @@ button:hover {
   font-size: 20px;
   font-weight: 600;
   white-space: nowrap;
+}
+.playback-title {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.playback-title small {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: var(--muted);
 }
 .play-button {
   width: 46px;
