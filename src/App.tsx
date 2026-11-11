@@ -1,5 +1,6 @@
 // 已确认日夜与楼层v2的整屏入口；统一管理区域、回放时段与场景操作。
 import { getViewportLayout } from './layout';
+import { isNightTime } from './scene/time';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   CampusScene,
@@ -24,11 +25,27 @@ export default function App() {
   const [selected, setSelected] = useState<RegionId | null>('outpatient');
   const [mode, setMode] = useState<SceneMode>('overview');
   const [floor, setFloor] = useState<'f1' | 'f2'>('f1');
-  const [night, setNight] = useState(false);
-  // 回放时段决定默认日夜；手动预览保持到下一次时段切换。
+  const [localNight, setLocalNight] = useState(() => isNightTime(new Date()));
+  const [lightMode, setLightMode] = useState<'auto' | 'replay' | 'manual'>('auto');
+  const [manualNight, setManualNight] = useState(false);
+  const night =
+    lightMode === 'auto'
+      ? localNight
+      : lightMode === 'replay'
+        ? periods[period].minute >= 18 * 60
+        : manualNight;
+  // 自动跟随设备本地时间；回放和手动预览显式接管，避免被时钟刷新覆盖。
   useEffect(() => {
-    setNight(periods[period].minute >= 18 * 60);
-  }, [period]);
+    const update = () => setLocalNight(isNightTime(new Date()));
+    const timer = window.setInterval(update, 30_000);
+    window.addEventListener('focus', update);
+    document.addEventListener('visibilitychange', update);
+    return () => {
+      window.clearInterval(timer);
+      window.removeEventListener('focus', update);
+      document.removeEventListener('visibilitychange', update);
+    };
+  }, []);
   const [detail, setDetail] = useState(false);
   const [zone, setZone] = useState<'waiting' | 'consultation' | null>(null);
   const [playing, setPlaying] = useState(false);
@@ -216,7 +233,9 @@ export default function App() {
           <div className="header-utilities">
             <span className="clock">
               <Icon name="clock" size={24} />
-              <strong data-testid="active-time">{frame.time}</strong>
+              <strong data-testid="active-time" title="当前模拟回放时段">
+                {frame.time}
+              </strong>
             </span>
             <button aria-label="项目说明" title="项目说明" onClick={() => setShowInfo(true)}>
               <Icon name="info" size={20} />
@@ -552,10 +571,27 @@ export default function App() {
           <button
             aria-label={night ? '切换日间' : '切换夜间'}
             aria-pressed={night}
-            onClick={() => setNight((v) => !v)}
+            onClick={() => {
+              setManualNight(!night);
+              setLightMode('manual');
+            }}
           >
             <Icon name={night ? 'sun' : 'moon'} size={24} />
             <span>{night ? '日间' : '夜间'}</span>
+          </button>
+          <button
+            aria-label="自动跟随本地时间"
+            aria-pressed={lightMode === 'auto'}
+            className={lightMode === 'auto' ? 'active' : ''}
+            title="自动日夜：18:00—06:00 为夜景"
+            onClick={() => {
+              setPlaying(false);
+              setLightMode('auto');
+              setLocalNight(isNightTime(new Date()));
+            }}
+          >
+            <Icon name="clock" size={24} />
+            <span>自动</span>
           </button>
         </nav>
         <div className="scene-note">
@@ -597,6 +633,7 @@ export default function App() {
               aria-label={playing ? '暂停回放' : '播放回放'}
               className="play-button"
               onClick={() => {
+                setLightMode('replay');
                 if (!playing && period === 3) setPeriod(0);
                 setPlaying((v) => !v);
               }}
@@ -611,6 +648,7 @@ export default function App() {
                 className={i === period ? 'active' : ''}
                 aria-pressed={i === period}
                 onClick={() => {
+                  setLightMode('replay');
                   setPeriod(i);
                   setPlaying(false);
                 }}
